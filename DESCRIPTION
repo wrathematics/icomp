@@ -2,9 +2,13 @@ Package: icomp
 Type: Package
 Title: ICOMP criterion
 Version: 0.2.0
-Authors@R: c(person("Jake", "Ferguson", role=c("aut", "cre")),
-    person("Drew", "Schmidt", email="wrathematics@gmail.com"))
-Maintainer: Drew Schmidt <wrathematics@gmail.com>
-Description: Calculates the ICOMP criterion and its variations
+Authors@R: c(person("Jake", "Ferguson", role=c("aut")),
+    person("Drew", "Schmidt", role=c("aut", "cre"), email="wrathematics@gmail.com"))
+Description: Calculates Bozdogan's Information Complexity (ICOMP) 
+    criteria efficiently.  The syntax and behavior is similar to R's
+    own AIC() and BIC() functions.  Currently only linear models
+    are supported.
+Imports: stats
 License: GPL (>= 2)
 URL: https://github.com/wrathematics/icomp
+RoxygenNote: 5.0.1
