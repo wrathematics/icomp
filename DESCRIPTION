@@ -2,8 +2,9 @@ Package: icomp
 Type: Package
 Title: ICOMP criterion
 Version: 0.2.0
-Authors@R: c(person("Jake", "Ferguson", role=c("aut")),
-    person("Drew", "Schmidt", role=c("aut", "cre"), email="wrathematics@gmail.com"))
+Authors@R: c(person("Drew", "Schmidt", role=c("aut", "cre"), 
+        email="wrathematics@gmail.com"),
+    person("Jake", "Ferguson", role="aut"))
 Description: Calculates Bozdogan's Information Complexity (ICOMP) 
     criteria efficiently.  The syntax and behavior is similar to R's
     own AIC() and BIC() functions.  Currently only linear models

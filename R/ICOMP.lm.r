@@ -42,7 +42,7 @@ ICOMP_lm <- function(object)
 #' lm1 <- lm(Fertility ~ . , data = swiss)
 #' lm2 <- update(lm1, . ~ . -Examination)
 #' 
-#' ICOMP(lm1, lm2)
+#' icomp::ICOMP(lm1, lm2)
 #' }
 #' 
 #' @importFrom stats logLik

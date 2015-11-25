@@ -30,12 +30,12 @@ a smaller ICOMP value corresponds to a better model.
 lm1 <- lm(Fertility ~ . , data = swiss)
 lm2 <- update(lm1, . ~ . -Examination)
 
-ICOMP(lm1, lm2)
+icomp::ICOMP(lm1, lm2)
 }
 
 }
 \author{
-Jake Ferguson and Drew Schmidt
+Drew Schmidt ad Jake Ferguson
 }
 \references{
 Bozdogan, H. Haughton, D.M.A (1998). Information complexity
