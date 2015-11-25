@@ -1,0 +1,4 @@
+Release 0.2.0:
+  * Changed ICOMP() to S3 generic.
+  * Improved performance for ICOMP.lm() method.
+
