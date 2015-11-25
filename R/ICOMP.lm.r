@@ -1,15 +1,11 @@
-tr <- function(x) sum(diag(x))
-
-
-
 sigma_lm <- function(mdl)
 {
   r <- mdl$residuals
   
   if (is.null(mdl$weights))
-    rss <- sum(r*r)
+    rss <- sumprod(r, r)
   else
-    rss <- sum(mdl$weights * r*r)
+    rss <- sumprod(mdl$weights, r*r)
   
   sqrt(rss / mdl$df.residual)
 }
