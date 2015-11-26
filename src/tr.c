@@ -40,3 +40,21 @@ SEXP R_tr_int(SEXP x_)
   UNPROTECT(1);
   return ret;
 }
+
+
+
+SEXP R_tr_overlay(SEXP x_)
+{
+  switch(TYPEOF(x_)) {
+    case REALSXP: {
+      return R_tr_real(x_);
+    }
+    case INTSXP: {
+      return R_tr_int(x_);
+    }
+    default: {
+      Rf_error("argument 'x' must be numeric");
+    }
+  }
+  return R_NilValue;
+}

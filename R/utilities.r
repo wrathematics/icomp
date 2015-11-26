@@ -17,12 +17,7 @@ multimodel <- function(l, call, fun)
 # trace
 tr <- function(x)
 {
-  if (is.double(x))
-    .Call(R_tr_real, x)
-  else if (is.integer(x))
-    .Call(R_tr_int, x)
-  else
-    stop("argument 'x' must be numeric")
+  .Call(R_tr_overlay, x)
 }
 
 
