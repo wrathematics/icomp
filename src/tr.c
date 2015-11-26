@@ -43,14 +43,14 @@ SEXP R_tr_int(SEXP x_)
 
 
 
-SEXP R_tr_overlay(SEXP x_)
+SEXP R_tr(SEXP x)
 {
-  switch(TYPEOF(x_)) {
+  switch(TYPEOF(x)) {
     case REALSXP: {
-      return R_tr_real(x_);
+      return R_tr_real(x);
     }
     case INTSXP: {
-      return R_tr_int(x_);
+      return R_tr_int(x);
     }
     default: {
       Rf_error("argument 'x' must be numeric");

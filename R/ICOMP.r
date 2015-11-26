@@ -20,7 +20,7 @@
 #' criteria for regression models. Computation Statistics & Data Analysis 28:
 #' 51-76
 #' 
-#' @useDynLib icomp, R_tr_real, R_tr_int, R_sumprod_int, R_sumprod_real
+#' @useDynLib icomp, R_tr, R_sumprod_int, R_sumprod_real
 #' 
 #' @keywords models regression
 #' @rdname ICOMP

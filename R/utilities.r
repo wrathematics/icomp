@@ -15,10 +15,7 @@ multimodel <- function(l, call, fun)
 
 
 # trace
-tr <- function(x)
-{
-  .Call(R_tr_overlay, x)
-}
+tr <- function(x) .Call(R_tr, x)
 
 
 

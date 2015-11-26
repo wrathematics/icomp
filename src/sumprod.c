@@ -38,3 +38,4 @@ SEXP R_sumprod_int(SEXP x_, SEXP y_)
   UNPROTECT(1);
   return ret;
 }
+
