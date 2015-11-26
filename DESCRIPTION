@@ -16,3 +16,4 @@ NeedsCompilation: yes
 ByteCompile: yes
 URL: https://github.com/wrathematics/icomp
 RoxygenNote: 5.0.1
+Suggests: testthat
