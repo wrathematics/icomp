@@ -1,7 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
 
-SEXP R_sumprod_real(SEXP x_, SEXP y_)
+static SEXP R_sumprod_real(SEXP x_, SEXP y_)
 {
   SEXP ret;
   int i;
@@ -21,7 +21,7 @@ SEXP R_sumprod_real(SEXP x_, SEXP y_)
 
 
 
-SEXP R_sumprod_int(SEXP x_, SEXP y_)
+static SEXP R_sumprod_int(SEXP x_, SEXP y_)
 {
   SEXP ret;
   int i;
@@ -38,3 +38,33 @@ SEXP R_sumprod_int(SEXP x_, SEXP y_)
   UNPROTECT(1);
   return ret;
 }
+
+
+
+SEXP R_sumprod(SEXP x, SEXP y)
+{
+  if (LENGTH(x) != LENGTH(y))
+    Rf_error("arguments 'x' and 'y' must be vectors of the same length");
+  
+  if (isReal(x))
+  {
+    if (isInteger(y))
+    {
+      y = PROTECT(coerceVector(y, REALSXP));
+      UNPROTECT(1);
+    }
+    
+    return R_sumprod_real(x, y);
+  }
+  else if (isReal(y))
+  {
+    x = PROTECT(coerceVector(x, REALSXP));
+    UNPROTECT(1);
+    
+    return R_sumprod_real(x, y);
+  }
+  else
+    return R_sumprod_int(x, y);
+}
+
+
