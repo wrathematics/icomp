@@ -1,7 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
 
-SEXP R_tr_real(SEXP x_)
+static SEXP R_tr_real(SEXP x_)
 {
   SEXP ret;
   int i;
@@ -22,7 +22,7 @@ SEXP R_tr_real(SEXP x_)
 
 
 
-SEXP R_tr_int(SEXP x_)
+static SEXP R_tr_int(SEXP x_)
 {
   SEXP ret;
   int i;
