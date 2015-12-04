@@ -2,7 +2,7 @@
 #include <Rinternals.h>
 #include <math.h>
 
-SEXP R_tr_real(SEXP x_, SEXP logs)
+static SEXP R_tr_real(SEXP x_, SEXP logs)
 {
   SEXP ret;
   int i;
@@ -31,7 +31,7 @@ SEXP R_tr_real(SEXP x_, SEXP logs)
 
 
 
-SEXP R_tr_int(SEXP x_)
+static SEXP R_tr_int(SEXP x_, SEXP logs)
 {
   SEXP ret;
   int i;
@@ -48,4 +48,22 @@ SEXP R_tr_int(SEXP x_)
   INTEGER(ret)[0] = trace;
   UNPROTECT(1);
   return ret;
+}
+
+
+
+SEXP R_tr(SEXP x, SEXP logs)
+{
+  switch(TYPEOF(x)) {
+    case REALSXP: {
+      return R_tr_real(x, logs);
+    }
+    case INTSXP: {
+      return R_tr_int(x, logs);
+    }
+    default: {
+      Rf_error("argument 'x' must be numeric");
+    }
+  }
+  return R_NilValue;
 }

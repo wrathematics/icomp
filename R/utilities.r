@@ -16,15 +16,7 @@ multimodel <- function(l, call, fun, complexity)
 
 
 # trace
-tr <- function(x, logs=FALSE)
-{
-  if (is.double(x))
-    .Call(R_tr_real, x, logs)
-  else if (is.integer(x))
-    .Call(R_tr_int, x, logs)
-  else
-    stop("argument 'x' must be numeric")
-}
+tr <- function(x) .Call(R_tr, x, logs=FALSE)
 
 
 
@@ -33,22 +25,6 @@ sumprod <- function(x, y)
 {
   if (!is.numeric(x) || !is.numeric(y))
     stop("arguments 'x' and 'y' must be numeric")
-  if (length(x) != length(y))
-    stop("arguments 'x' and 'y' must be vectors of the same length")
   
-  if (is.double(x))
-  {
-    if (is.integer(y))
-      storage.mode(y) <- "double"
-    
-    .Call(R_sumprod_real, x, y)
-  }
-  else if (is.double(y))
-  {
-    storage.mode(x) <- "double"
-    
-    .Call(R_sumprod_real, x, y)
-  }
-  else
-    .Call(R_sumprod_int, x, y)
+  .Call(R_sumprod, x, y)
 }
