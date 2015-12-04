@@ -2,5 +2,6 @@
 
 S3method(ICOMP,lm)
 export(ICOMP)
+export(ICOMP_IFIM)
 importFrom(stats,logLik)
 useDynLib(icomp, R_tr_real, R_tr_int, R_sumprod_int, R_sumprod_real)

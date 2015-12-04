@@ -5,7 +5,7 @@
 \alias{ICOMP.lm}
 \title{ICOMP}
 \usage{
-\method{ICOMP}{lm}(object, ...)
+\method{ICOMP}{lm}(object, ..., complexity = "C1")
 
 ICOMP(object, ...)
 }
@@ -14,6 +14,8 @@ ICOMP(object, ...)
 Currently supports \code{lm} objects.}
 
 \item{...}{Additional arguments.}
+
+\item{complexity}{Complexity measure, as a string.  Valid options are "C1".}
 }
 \value{
 The ICOMP value for the given model.

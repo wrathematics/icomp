@@ -12,7 +12,7 @@ sigma_lm <- function(mdl)
 
 
 
-ICOMP_lm <- function(object)
+ICOMP_lm <- function(object, complexity)
 {
   lLik <- c(logLik(object))
   
@@ -20,18 +20,20 @@ ICOMP_lm <- function(object)
   rnk <- 1:rank
   
   inv.matrix <- chol2inv(object$qr$qr[rnk, rnk, drop=FALSE])
-  
   sigma <- sigma_lm(object)
   cov.matrix <- sigma*sigma*inv.matrix
   
   k <- rank + 1
-  icomp <- -2*lLik + 2*(0.5*k*log(tr(cov.matrix)/k) - .5*log(det(cov.matrix)))
+  icomp <- -2*lLik + compute_complexity(cov.matrix, complexity, k)
   
   icomp
 }
 
 
 
+#' @param complexity
+#' Complexity measure, as a string.  Valid options are "C1".
+#' 
 #' @examples
 #' \dontrun{
 #' ### Modified from the example in ?AIC
@@ -46,11 +48,13 @@ ICOMP_lm <- function(object)
 #' @rdname ICOMP
 #' @method ICOMP lm
 #' @export
-ICOMP.lm <- function(object, ...)
+ICOMP.lm <- function(object, ..., complexity="C1")
 {
+  complexity <- match.arg(toupper(complexity), c("C0", "C1"))
+  
   if (missing(...))
-    return(ICOMP_lm(object))
+    return(ICOMP_lm(object, complexity))
   
   call <- match.call()
-  multimodel(list(object, ...), call, ICOMP.lm)
+  multimodel(list(object, ...), call, ICOMP.lm, complexity)
 }

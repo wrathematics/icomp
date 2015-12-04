@@ -1,7 +1,8 @@
 #include <R.h>
 #include <Rinternals.h>
+#include <math.h>
 
-SEXP R_tr_real(SEXP x_)
+SEXP R_tr_real(SEXP x_, SEXP logs)
 {
   SEXP ret;
   int i;
@@ -11,8 +12,16 @@ SEXP R_tr_real(SEXP x_)
   double *x = REAL(x_);
   double trace = 0.;
   
+  if (INTEGER(logs)[0])
+  {
+    for (i=0; i<k; i++)
+      trace += log(x[i + i*m]);
+  }
+  else
+  {
   for (i=0; i<k; i++)
     trace += x[i + i*m];
+  }
   
   PROTECT(ret = allocVector(REALSXP, 1));
   REAL(ret)[0] = trace;

@@ -1,13 +1,14 @@
 # Compute information criteria values for a list of models
 # @param l list of models
 # @param fun likelihood function, such as ICOMP()
-multimodel <- function(l, call, fun)
+multimodel <- function(l, call, fun, complexity)
 {
-  criteria <- sapply(l, fun)
+  criteria <- sapply(l, fun, complexity=complexity)
   
   ret <- as.data.frame(criteria)
   colnames(ret) <- deparse(substitute(fun))
-  row.names(ret) <- as.character(call[-1L])
+  row.names(ret) <- paste0(as.character(call[-1][1:length(l)]))
+  ret <- cbind(Complexity=complexity, ret)
   
   ret
 }
@@ -15,12 +16,12 @@ multimodel <- function(l, call, fun)
 
 
 # trace
-tr <- function(x)
+tr <- function(x, logs=FALSE)
 {
   if (is.double(x))
-    .Call(R_tr_real, x)
+    .Call(R_tr_real, x, logs)
   else if (is.integer(x))
-    .Call(R_tr_int, x)
+    .Call(R_tr_int, x, logs)
   else
     stop("argument 'x' must be numeric")
 }
