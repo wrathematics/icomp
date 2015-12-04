@@ -35,7 +35,7 @@ icomp::ICOMP(lm1, lm2)
 
 }
 \author{
-Drew Schmidt ad Jake Ferguson
+Drew Schmidt and Jake Ferguson
 }
 \references{
 Bozdogan, H. Haughton, D.M.A (1998). Information complexity

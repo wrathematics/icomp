@@ -14,7 +14,7 @@
 #' @return
 #' The ICOMP value for the given model.
 #' 
-#' @author Drew Schmidt ad Jake Ferguson
+#' @author Drew Schmidt and Jake Ferguson
 #' 
 #' @references Bozdogan, H. Haughton, D.M.A (1998). Information complexity
 #' criteria for regression models. Computation Statistics & Data Analysis 28:
