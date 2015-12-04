@@ -3,6 +3,9 @@
 # @param fun likelihood function, such as ICOMP()
 multimodel <- function(l, call, fun, complexity)
 {
+  if (length(unique(sapply(l, class))) > 1)
+    stop("invalid model list specification; models must be of the same class")
+  
   criteria <- sapply(l, fun, complexity=complexity)
   
   ret <- as.data.frame(criteria)
@@ -16,7 +19,7 @@ multimodel <- function(l, call, fun, complexity)
 
 
 # trace
-tr <- function(x) .Call(R_tr, x, logs=FALSE)
+tr <- function(x, logs=FALSE) .Call(R_tr, x, logs)
 
 
 

@@ -17,22 +17,23 @@ ICOMP_lm <- function(object, complexity)
   lLik <- c(logLik(object))
   
   rank <- object$rank
-  rnk <- 1:rank
+  ind <- 1:rank
   
-  inv.matrix <- chol2inv(object$qr$qr[rnk, rnk, drop=FALSE])
+  inv.matrix <- chol2inv(object$qr$qr[ind, ind, drop=FALSE])
   sigma <- sigma_lm(object)
-  cov.matrix <- sigma*sigma*inv.matrix
+  covmat <- sigma*sigma*inv.matrix
   
   k <- rank + 1
-  icomp <- -2*lLik + compute_complexity(cov.matrix, complexity, k)
+  icomp <- -2*lLik + compute_complexity(covmat, complexity, k)
   
   icomp
 }
 
 
 
-#' @param complexity
-#' Complexity measure, as a string.  Valid options are "C1".
+#' @param cplex
+#' Complexity measure, as a string.  Valid options are "C0", "C1", 
+#' "C1F", and "COND", the latter being condition number.
 #' 
 #' @examples
 #' \dontrun{
@@ -48,13 +49,14 @@ ICOMP_lm <- function(object, complexity)
 #' @rdname ICOMP
 #' @method ICOMP lm
 #' @export
-ICOMP.lm <- function(object, ..., complexity="C1")
+ICOMP.lm <- function(object, ..., cplex="C1")
 {
-  complexity <- match.arg(toupper(complexity), c("C0", "C1"))
+  complexities <- c("C0", "C1", "C1F", "COND")
+  complexity <- match.arg(toupper(cplex), complexities)
   
   if (missing(...))
     return(ICOMP_lm(object, complexity))
   
   call <- match.call()
-  multimodel(list(object, ...), call, ICOMP.lm, complexity)
+  multimodel(list(object, ...), call, ICOMP_lm, complexity)
 }

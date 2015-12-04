@@ -13,13 +13,15 @@
 #' @name icomps-package
 #' @aliases icomps-package icomps
 #' @docType package
-#' @author Jake Ferguson
+#' @author Drew Schmidt and Jake Ferguson
 #' 
-#' Maintainer: Jake Ferguson <troutinthemilk@@gmail.com>
+#' Maintainer: Drew Schmidt <wrathematics@@gmail.com>
+#' 
 #' @references Bozdogan, H. Haughton, D.M.A (1998). Information complexity
 #' criteria for regression models. Computation Statistics & Data Analysis 28:
 #' 51-76
 #' 
-#' Ferguson et al (unpublished) ICOMP: An Information Criterion new to Ecology
+#' @useDynLib icomp, R_tr, R_sumprod
+#' 
 #' @keywords package models regression
 NULL
