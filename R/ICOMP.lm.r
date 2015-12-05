@@ -21,7 +21,7 @@ ICOMP_lm <- function(object, complexity)
   
   inv.matrix <- chol2inv(object$qr$qr[ind, ind, drop=FALSE])
   sigma <- sigma_lm(object)
-  covmat <- sigma*sigma*inv.matrix
+  covmat <- (sigma*sigma)*inv.matrix
   
   k <- rank + 1
   icomp <- -2*lLik + compute_complexity(covmat, complexity, k)
