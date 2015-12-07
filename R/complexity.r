@@ -1,5 +1,5 @@
 # compute twice the complexity
-compute_complexity <- function(cov.matrix,  complexity, k)
+compute_complexity <- function(cov.matrix, complexity, k)
 {
   if (complexity == "C0")
     tr(cov.matrix, logs=TRUE) - log(det(cov.matrix))
